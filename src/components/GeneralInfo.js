@@ -30,7 +30,7 @@ class GeneralInfo extends Component {
     return (
       <InfoSection title="General Information">
         <SubSection>
-          <Container>
+          <Container className="container">
             <label htmlFor="firstName">First Name</label>
             <input
               className="general-info-input"
@@ -41,7 +41,7 @@ class GeneralInfo extends Component {
             ></input>
           </Container>
 
-          <Container>
+          <Container className="container">
             <label htmlFor="lastName">Last Name</label>
             <input
               className="general-info-input"
@@ -52,7 +52,7 @@ class GeneralInfo extends Component {
             ></input>
           </Container>
 
-          <Container>
+          <Container className="container">
             <label htmlFor="title">Title</label>
             <input
               className="general-info-input"
@@ -63,7 +63,7 @@ class GeneralInfo extends Component {
             ></input>
           </Container>
 
-          <Container>
+          <Container className="container">
             <label htmlFor="phone-no">Phone No.</label>
             <input
               className="general-info-input"
@@ -74,7 +74,7 @@ class GeneralInfo extends Component {
             ></input>
           </Container>
 
-          <Container>
+          <Container className="container">
             <label htmlFor="email">Email</label>
             <input
               className="general-info-input"
@@ -84,7 +84,7 @@ class GeneralInfo extends Component {
             ></input>
           </Container>
 
-          <Container>
+          <Container className="container">
             <label htmlFor="github">Github</label>
             <input
               className="general-info-input"
@@ -94,7 +94,7 @@ class GeneralInfo extends Component {
             ></input>
           </Container>
 
-          <Container>
+          <Container className="container">
             <label htmlFor="linkedIn">LinkedIn</label>
             <input
               className="general-info-input"

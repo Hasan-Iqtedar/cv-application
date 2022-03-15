@@ -7,7 +7,7 @@ class Container extends Component {
   }
 
   render() {
-    return <div className="container">{this.props.children}</div>;
+    return <div className={this.props.className}>{this.props.children}</div>;
   }
 }
 
