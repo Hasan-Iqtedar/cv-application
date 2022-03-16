@@ -67,17 +67,19 @@ class EducationInfo extends Component {
               <input
                 className="general-info-input"
                 id="to"
-                type="text"
+                type="date"
                 value={this.state.to}
                 onChange={this.updateToDate}
               ></input>
             </Container>
+
             <Container className="container">
               <label htmlFor="from">From</label>
               <input
                 className="general-info-input"
                 id="from"
                 type="text"
+                placeholder="Date or Present"
                 value={this.state.from}
                 onChange={this.updateFromDate}
               ></input>
