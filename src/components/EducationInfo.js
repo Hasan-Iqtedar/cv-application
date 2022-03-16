@@ -23,6 +23,8 @@ class EducationInfo extends Component {
   updateFromDate = (e) => this.setState({ from: e.target.value });
 
   render() {
+    console.log("EducationalInfo Component\n____________________");
+
     return (
       <InfoSection title="Education">
         <SubSection>
@@ -81,6 +83,13 @@ class EducationInfo extends Component {
               ></input>
             </Container>
           </Container>
+
+          <button
+            className="add-button"
+            onClick={this.props.sendEducationalInfo.bind(this, this.state)}
+          >
+            Add
+          </button>
         </SubSection>
       </InfoSection>
     );

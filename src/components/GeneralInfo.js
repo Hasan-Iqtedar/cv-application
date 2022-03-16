@@ -27,6 +27,8 @@ class GeneralInfo extends Component {
   updateLinkedIn = (e) => this.setState({ linkedIn: e.target.value });
 
   render() {
+    console.log("GeneralInfo Component\n____________________");
+
     return (
       <InfoSection title="General Information">
         <SubSection>
@@ -103,6 +105,13 @@ class GeneralInfo extends Component {
               onChange={this.updateLinkedIn}
             ></input>
           </Container>
+
+          <button
+            className="add-button"
+            onClick={this.props.sendGeneralInfo.bind(this, this.state)}
+          >
+            Add
+          </button>
         </SubSection>
       </InfoSection>
     );

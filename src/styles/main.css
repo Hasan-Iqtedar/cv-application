@@ -51,3 +51,19 @@ body {
 .date-container .container {
   width: 45%;
 }
+
+.add-button {
+  width: 60px;
+  height: 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: large;
+  background-color: rgb(221, 221, 221);
+  margin-left: auto;
+  margin-right: 10%;
+}
+
+.add-button:hover {
+  background-color: rgb(211, 210, 210);
+
+}

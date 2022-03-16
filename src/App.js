@@ -5,13 +5,46 @@ import GeneralInfo from "./components/GeneralInfo";
 class App extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      generalInfo: {
+        firstName: "",
+        lastName: "",
+        title: "",
+        phoneNo: "",
+        email: "",
+        github: "",
+        linkedIn: "",
+      },
+
+      educationalInfo: {
+        degree: "",
+        institution: "",
+        cgpa: "",
+        to: "",
+        from: "",
+      },
+    };
   }
 
+  getGeneralInfo = (data) => {
+    this.setState({
+      generalInfo: data,
+    });
+  };
+
+  getEducationalInfo = (data) => {
+    this.setState({
+      educationalInfo: data,
+    });
+  };
+
   render() {
+    console.log("App Component\n____________________");
     return (
       <div>
-        <GeneralInfo />
-        <EducationInfo />
+        <GeneralInfo sendGeneralInfo={this.getGeneralInfo} />
+        <EducationInfo sendEducationalInfo={this.getEducationalInfo} />
       </div>
     );
   }
