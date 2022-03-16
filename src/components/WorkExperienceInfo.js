@@ -24,7 +24,7 @@ class WorkExperienceInfo extends Component {
 
   render() {
     return (
-      <InfoSection>
+      <InfoSection title="Experience">
         <SubSection>
           <Container className="container">
             <label htmlFor="jobTitle">Job Title</label>
