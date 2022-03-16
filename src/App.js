@@ -1,6 +1,7 @@
 import { Component } from "react";
 import EducationInfo from "./components/EducationInfo";
 import GeneralInfo from "./components/GeneralInfo";
+import WorkExperienceInfo from "./components/WorkExperienceInfo";
 
 class App extends Component {
   constructor(props) {
@@ -24,6 +25,14 @@ class App extends Component {
         to: "",
         from: "",
       },
+
+      experienceInfo: {
+        jobTitle: "",
+        company: "",
+        details: "",
+        to: "",
+        from: "",
+      },
     };
   }
 
@@ -39,12 +48,19 @@ class App extends Component {
     });
   };
 
+  getExperienceInfo = (data) => {
+    this.setState({
+      experienceInfo: data,
+    });
+  };
+
   render() {
     console.log("App Component\n____________________");
     return (
       <div>
         <GeneralInfo sendGeneralInfo={this.getGeneralInfo} />
         <EducationInfo sendEducationalInfo={this.getEducationalInfo} />
+        <WorkExperienceInfo sendExperienceInfo={this.getExperienceInfo} />
       </div>
     );
   }
