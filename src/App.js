@@ -8,6 +8,8 @@ class App extends Component {
     super(props);
 
     this.state = {
+      complete: false,
+
       generalInfo: {
         firstName: "",
         lastName: "",
@@ -18,7 +20,7 @@ class App extends Component {
         linkedIn: "",
       },
 
-      educationalInfo: {
+      educationInfo: {
         degree: "",
         institution: "",
         cgpa: "",
@@ -42,9 +44,9 @@ class App extends Component {
     });
   };
 
-  getEducationalInfo = (data) => {
+  getEducationInfo = (data) => {
     this.setState({
-      educationalInfo: data,
+      educationInfo: data,
     });
   };
 
@@ -54,15 +56,46 @@ class App extends Component {
     });
   };
 
+  generateCV = () => this.setState({ complete: true });
+
+  backToEdit = () => {
+    this.setState({ complete: false });
+  };
+
   render() {
     console.log("App Component\n____________________");
-    return (
-      <div>
-        <GeneralInfo sendGeneralInfo={this.getGeneralInfo} />
-        <EducationInfo sendEducationalInfo={this.getEducationalInfo} />
-        <WorkExperienceInfo sendExperienceInfo={this.getExperienceInfo} />
-      </div>
-    );
+    // console.log(this.state.generalInfo);
+    if (!this.state.complete) {
+      return (
+        <div id="app-container">
+          <GeneralInfo
+            generalInfo={this.state.generalInfo}
+            sendGeneralInfo={this.getGeneralInfo}
+          />
+
+          <EducationInfo
+            educationInfo={this.state.educationInfo}
+            sendEducationInfo={this.getEducationInfo}
+          />
+
+          <WorkExperienceInfo
+            experienceInfo={this.state.experienceInfo}
+            sendExperienceInfo={this.getExperienceInfo}
+          />
+
+          <button className="complete-button" onClick={this.generateCV}>
+            Complete
+          </button>
+        </div>
+      );
+    } else {
+      return (
+        <div id="app-container">
+          hello
+          <button onClick={this.backToEdit}>Back</button>
+        </div>
+      );
+    }
   }
 }
 

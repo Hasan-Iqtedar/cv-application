@@ -1,6 +1,12 @@
 body {
   background-color: rgb(238, 236, 236);
   padding: 20px;
+  margin: 0px;
+}
+
+#app-container {
+  display: flex;
+  flex-direction: column;
 }
 
 .info-section {
@@ -54,17 +60,30 @@ body {
   width: 45%;
 }
 
-.add-button {
-  width: 60px;
+button {
   height: 30px;
   border: none;
   border-radius: 5px;
   font-size: large;
+}
+
+.add-button {
+  width: 60px;
   background-color: rgb(221, 221, 221);
   margin-left: auto;
   margin-right: 10%;
 }
 
+.complete-button {
+  width: 100px;
+  background-color: rgb(168, 205, 247);
+  margin-left: auto;
+}
+
 .add-button:hover {
   background-color: rgb(211, 210, 210);
+}
+
+.complete-button:hover {
+  background-color: rgb(156, 196, 243);
 }

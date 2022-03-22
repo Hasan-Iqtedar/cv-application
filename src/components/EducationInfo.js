@@ -8,11 +8,11 @@ class EducationInfo extends Component {
     super(props);
 
     this.state = {
-      degree: "",
-      institution: "",
-      cgpa: "",
-      to: "",
-      from: "",
+      degree: props.educationInfo.degree,
+      institution: props.educationInfo.institution,
+      cgpa: props.educationInfo.cgpa,
+      to: props.educationInfo.to,
+      from: props.educationInfo.from,
     };
   }
 
@@ -88,7 +88,7 @@ class EducationInfo extends Component {
 
           <button
             className="add-button"
-            onClick={this.props.sendEducationalInfo.bind(this, this.state)}
+            onClick={this.props.sendEducationInfo.bind(this, this.state)}
           >
             Add
           </button>

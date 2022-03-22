@@ -8,11 +8,11 @@ class WorkExperienceInfo extends Component {
     super(props);
 
     this.state = {
-      jobTitle: "",
-      company: "",
-      details: "",
-      to: "",
-      from: "",
+      jobTitle: props.experienceInfo.jobTitle,
+      company: props.experienceInfo.company,
+      details: props.experienceInfo.details,
+      to: props.experienceInfo.to,
+      from: props.experienceInfo.from,
     };
   }
 

@@ -8,13 +8,13 @@ class GeneralInfo extends Component {
     super(props);
 
     this.state = {
-      firstName: "",
-      lastName: "",
-      title: "",
-      phoneNo: "",
-      email: "",
-      github: "",
-      linkedIn: "",
+      firstName: props.generalInfo.firstName,
+      lastName: props.generalInfo.lastName,
+      title: props.generalInfo.title,
+      phoneNo: props.generalInfo.phoneNo,
+      email: props.generalInfo.email,
+      github: props.generalInfo.github,
+      linkedIn: props.generalInfo.linkedIn,
     };
   }
 
