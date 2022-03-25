@@ -12,6 +12,7 @@ body {
 .info-section {
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: white;
   border-radius: 5px;
   padding: 5px;
@@ -23,14 +24,21 @@ body {
   flex-direction: column;
   align-items: center;
   margin-bottom: 15px;
-  /* border: 1px solid red; */
+  border: 1px solid red;
+  width: 80%;
+}
+
+.sub-section hr {
+  width: 100%;
+  color: white;
+  margin-top: 10px;
 }
 
 .container {
   display: flex;
   flex-direction: column;
   /* align-items: flex-start; */
-  width: 80%;
+  width: 100%;
   padding: 0px;
   /* border: 1px solid blue; */
   margin-bottom: 15px;
@@ -46,7 +54,19 @@ body {
 .info-section h1 {
   font-size: medium;
   margin-left: 10%;
+  align-self: flex-start;
 }
+
+#name {
+  align-self: center;
+  margin: 0px;
+  font-size: 35px;
+  color: gray;
+}
+#name span {
+  color: black;
+}
+
 
 .general-info-input {
   height: 30px;
@@ -71,13 +91,40 @@ button {
   width: 60px;
   background-color: rgb(221, 221, 221);
   margin-left: auto;
-  margin-right: 10%;
 }
 
 .complete-button {
   width: 100px;
   background-color: rgb(168, 205, 247);
   margin-left: auto;
+}
+
+.sub-section h1, h2, h3, h4 {
+  margin: 0;
+}
+
+.centered {
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.gray {
+  color: rgb(116, 114, 114);
+}
+
+.green {
+  color: rgb(58, 117, 43);
+}
+
+.left-aligned { 
+  align-self: flex-start;
+}
+
+.section-title {
+  margin-bottom: 10px;
 }
 
 .add-button:hover {

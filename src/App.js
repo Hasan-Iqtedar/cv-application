@@ -1,4 +1,5 @@
 import { Component } from "react";
+import Cv from "./components/Cv";
 import EducationInfo from "./components/EducationInfo";
 import GeneralInfo from "./components/GeneralInfo";
 import WorkExperienceInfo from "./components/WorkExperienceInfo";
@@ -8,7 +9,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      complete: false,
+      complete: true,
 
       generalInfo: {
         firstName: "",
@@ -90,10 +91,12 @@ class App extends Component {
       );
     } else {
       return (
-        <div id="app-container">
-          hello
-          <button onClick={this.backToEdit}>Back</button>
-        </div>
+        <Cv
+          generalInfo={this.state.generalInfo}
+          experienceInfo={this.state.experienceInfo}
+          educationInfo={this.state.educationInfo}
+          backToEdit={this.backToEdit}
+        ></Cv>
       );
     }
   }

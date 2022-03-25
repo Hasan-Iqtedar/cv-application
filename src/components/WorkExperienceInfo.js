@@ -18,7 +18,7 @@ class WorkExperienceInfo extends Component {
 
   updateJobTitle = (e) => this.setState({ jobTitle: e.target.value });
   updateCompany = (e) => this.setState({ company: e.target.value });
-  updateDetails = (e) => this.setState({ tasksDescription: e.target.value });
+  updateDetails = (e) => this.setState({ details: e.target.value });
   updateToDate = (e) => this.setState({ to: e.target.value });
   updateFromDate = (e) => this.setState({ from: e.target.value });
 
