@@ -1,4 +1,5 @@
 import { Component } from "react";
+import Container from "./Container";
 import InfoSection from "./InfoSection";
 import SubSection from "./SubSection";
 
@@ -15,10 +16,12 @@ class Cv extends Component {
         <InfoSection>
           <SubSection>
             <h1 id="name">
-              {generalInfo.firstName} <span>{generalInfo.lastName}</span>
+              {generalInfo.firstName.toUpperCase()}{" "}
+              <span>{generalInfo.lastName.toUpperCase()}</span>
             </h1>
             <span className="gray centered">
-              {generalInfo.title} . {generalInfo.phoneNo}
+              {generalInfo.title.toUpperCase()} .{" "}
+              {generalInfo.phoneNo.toUpperCase()}
             </span>
             <span className="green centered bold">
               {generalInfo.email} . {generalInfo.linkedIn} .{" "}
@@ -30,14 +33,27 @@ class Cv extends Component {
           <SubSection>
             <h2 className="section-title left-aligned">Experience</h2>
 
-            <h4 className="gray left-aligned">
-              {experienceInfo.from} - {experienceInfo.to}
-            </h4>
-            <h4 className="left-aligned">
-              <span className="green">{experienceInfo.jobTitle}, </span>
-              <span className="gray">{experienceInfo.company}</span>
-            </h4>
-            <span className="gray left-aligned">{experienceInfo.details}</span>
+            {experienceInfo.map((experience, index) => {
+              return (
+                <Container className="container" key={index}>
+                  <h4 className="gray left-aligned">
+                    {experience.from} - {experience.to}
+                  </h4>
+                  <h4 className="left-aligned">
+                    <span className="green">
+                      {experience.jobTitle.toUpperCase()},{" "}
+                    </span>
+                    <span className="gray">
+                      {experience.company.toUpperCase()}
+                    </span>
+                  </h4>
+                  <span className="gray left-aligned">
+                    {experience.details}
+                  </span>
+                </Container>
+              );
+            })}
+
           </SubSection>
 
           <SubSection>
@@ -47,19 +63,11 @@ class Cv extends Component {
             </h4>
             <h4 className="left-aligned">
               <span className="green">
-                {educationInfo.degree}, {educationInfo.institution}
+                {educationInfo.degree.toUpperCase()},{" "}
+                {educationInfo.institution.toUpperCase()}
               </span>
             </h4>
             <span className="gray left-aligned">{educationInfo.cgpa}</span>
-
-            {/* <h4 className="gray left-aligned">JULY 2021 - SEPTEMBER 2021</h4>
-            <h4 className="left-aligned">
-              <span className="green">
-                BACHELOR OF SCIENCE IN COMPUTER SCIENCE, NATIONAL UNIVERSITY OF
-                SCIENCES AND TECHNOLOGY
-              </span>
-            </h4>
-            <span className="gray left-aligned">CGPA 3.80/4.0</span> */}
           </SubSection>
         </InfoSection>
         <button onClick={backToEdit}>Back</button>

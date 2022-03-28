@@ -2,6 +2,7 @@ import { Component } from "react";
 import Cv from "./components/Cv";
 import EducationInfo from "./components/EducationInfo";
 import GeneralInfo from "./components/GeneralInfo";
+import InfoSection from "./components/InfoSection";
 import WorkExperienceInfo from "./components/WorkExperienceInfo";
 
 class App extends Component {
@@ -29,13 +30,7 @@ class App extends Component {
         from: "",
       },
 
-      experienceInfo: {
-        jobTitle: "",
-        company: "",
-        details: "",
-        to: "",
-        from: "",
-      },
+      experienceInfo: [],
     };
   }
 
@@ -52,15 +47,37 @@ class App extends Component {
   };
 
   getExperienceInfo = (data) => {
-    this.setState({
-      experienceInfo: data,
-    });
+    const updatedInfo = this.state.experienceInfo;
+    updatedInfo[data.id] = data;
+
+    this.setState(
+      {
+        experienceInfo: updatedInfo,
+      },
+      () => {
+        console.log(updatedInfo);
+      }
+    );
   };
 
   generateCV = () => this.setState({ complete: true });
 
-  backToEdit = () => {
-    this.setState({ complete: false });
+  backToEdit = () => this.setState({ complete: false });
+
+  addExperience = () => {
+    this.setState({
+      experienceInfo: [
+        ...this.state.experienceInfo,
+        {
+          id: this.state.experienceInfo.length,
+          jobTitle: "",
+          company: "",
+          details: "",
+          to: "",
+          from: "",
+        },
+      ],
+    });
   };
 
   render() {
@@ -79,10 +96,21 @@ class App extends Component {
             sendEducationInfo={this.getEducationInfo}
           />
 
-          <WorkExperienceInfo
-            experienceInfo={this.state.experienceInfo}
-            sendExperienceInfo={this.getExperienceInfo}
-          />
+          <InfoSection title="Experience">
+            {this.state.experienceInfo.map((value, index) => {
+              return (
+                <WorkExperienceInfo
+                  id={index}
+                  key={index}
+                  experienceInfo={value}
+                  sendExperienceInfo={this.getExperienceInfo}
+                />
+              );
+            })}
+            <button className="add-button" onClick={this.addExperience}>
+              Add
+            </button>
+          </InfoSection>
 
           <button className="complete-button" onClick={this.generateCV}>
             Complete
