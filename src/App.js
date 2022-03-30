@@ -10,7 +10,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      complete: true,
+      complete: false,
 
       generalInfo: {
         firstName: "",
@@ -118,7 +118,6 @@ class App extends Component {
   backToEdit = () => this.setState({ complete: false });
 
   render() {
-    console.log("App Component\n____________________");
     if (!this.state.complete) {
       return (
         <div id="app-container">

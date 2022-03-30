@@ -27,8 +27,6 @@ class GeneralInfo extends Component {
   updateLinkedIn = (e) => this.setState({ linkedIn: e.target.value });
 
   render() {
-    console.log("GeneralInfo Component\n____________________");
-
     return (
       <InfoSection title="General Information">
         <SubSection>
