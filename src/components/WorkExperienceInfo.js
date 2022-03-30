@@ -2,26 +2,17 @@ import { Component } from "react";
 import SubSection from "./SubSection";
 import Container from "./Container";
 
-// const obj = {
-//   id: -1,
-//   jobTitle: "",
-//   company: "",
-//   details: "",
-//   to: "",
-//   from: "",
-// };
-
 class WorkExperienceInfo extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      id: props.experienceInfo.id,
       jobTitle: props.experienceInfo.jobTitle || "",
       company: props.experienceInfo.company || "",
       details: props.experienceInfo.details || "",
       to: props.experienceInfo.to || "",
       from: props.experienceInfo.from || "",
-      add: false,
     };
   }
 
@@ -113,9 +104,17 @@ class WorkExperienceInfo extends Component {
           </Container>
         </Container>
 
-        <button className="add-button" onClick={this.updateExperience}>
-          Update
-        </button>
+        <div className="button-container">
+          <button onClick={this.updateExperience}>Update</button>
+          <button
+            onClick={() => {
+              // this.setState({ jobTitle: "" });
+              this.props.deleteExperience(this.props.id);
+            }}
+          >
+            Delete
+          </button>
+        </div>
       </SubSection>
     );
   }

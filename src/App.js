@@ -31,6 +31,7 @@ class App extends Component {
       },
 
       experienceInfo: [],
+      currentExperienceId: 0,
     };
   }
 
@@ -46,18 +47,23 @@ class App extends Component {
     });
   };
 
-  getExperienceInfo = (data) => {
+  updateExperience = (data) => {
     const updatedInfo = this.state.experienceInfo;
-    updatedInfo[data.id] = data;
+    const index = updatedInfo.findIndex((element) => element.id === data.id);
+    updatedInfo[index] = data;
 
-    this.setState(
-      {
-        experienceInfo: updatedInfo,
-      },
-      () => {
-        console.log(updatedInfo);
-      }
-    );
+    this.setState({
+      experienceInfo: updatedInfo,
+    });
+  };
+
+  deleteExperience = (id) => {
+    let updatedInfo = [...this.state.experienceInfo];
+    updatedInfo = updatedInfo.filter((element) => element.id !== id);
+
+    this.setState({
+      experienceInfo: updatedInfo,
+    });
   };
 
   generateCV = () => this.setState({ complete: true });
@@ -69,7 +75,7 @@ class App extends Component {
       experienceInfo: [
         ...this.state.experienceInfo,
         {
-          id: this.state.experienceInfo.length,
+          id: this.state.currentExperienceId,
           jobTitle: "",
           company: "",
           details: "",
@@ -77,12 +83,12 @@ class App extends Component {
           from: "",
         },
       ],
+      currentExperienceId: this.state.currentExperienceId + 1,
     });
   };
 
   render() {
     console.log("App Component\n____________________");
-    // console.log(this.state.generalInfo);
     if (!this.state.complete) {
       return (
         <div id="app-container">
@@ -97,13 +103,14 @@ class App extends Component {
           />
 
           <InfoSection title="Experience">
-            {this.state.experienceInfo.map((value, index) => {
+            {this.state.experienceInfo.map((value) => {
               return (
                 <WorkExperienceInfo
-                  id={index}
-                  key={index}
+                  id={value.id}
+                  key={value.id}
                   experienceInfo={value}
-                  sendExperienceInfo={this.getExperienceInfo}
+                  sendExperienceInfo={this.updateExperience}
+                  deleteExperience={this.deleteExperience}
                 />
               );
             })}

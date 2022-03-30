@@ -89,7 +89,6 @@ button {
 
 .add-button {
   width: 60px;
-  background-color: rgb(221, 221, 221);
   margin-left: auto;
 }
 
@@ -101,6 +100,13 @@ button {
 
 .sub-section h1, h2, h3, h4 {
   margin: 0;
+}
+
+.button-container{
+  display: flex;
+  justify-content: space-between;
+  width: 15%;
+  margin-left: auto;
 }
 
 .centered {
