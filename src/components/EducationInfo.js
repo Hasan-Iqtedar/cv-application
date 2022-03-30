@@ -1,5 +1,4 @@
 import { Component } from "react";
-import InfoSection from "./InfoSection";
 import SubSection from "./SubSection";
 import Container from "./Container";
 

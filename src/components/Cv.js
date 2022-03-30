@@ -4,10 +4,6 @@ import InfoSection from "./InfoSection";
 import SubSection from "./SubSection";
 
 class Cv extends Component {
-  //   constructor(props) {
-  //     super(props);
-  //   }
-
   render() {
     const { generalInfo, experienceInfo, educationInfo, backToEdit } =
       this.props;
@@ -16,16 +12,17 @@ class Cv extends Component {
         <InfoSection>
           <SubSection>
             <h1 id="name">
-              {generalInfo.firstName.toUpperCase()}{" "}
-              <span>{generalInfo.lastName.toUpperCase()}</span>
+              {generalInfo.firstName.toUpperCase() || "FIRSTNAME"}{" "}
+              <span>{generalInfo.lastName.toUpperCase() || "LASTNAME"}</span>
             </h1>
             <span className="gray centered">
-              {generalInfo.title.toUpperCase()} .{" "}
-              {generalInfo.phoneNo.toUpperCase()}
+              {generalInfo.title.toUpperCase() || "TITLE"} .{" "}
+              {generalInfo.phoneNo.toUpperCase() || "Cell No."}
             </span>
             <span className="green centered bold">
-              {generalInfo.email} . {generalInfo.linkedIn} .{" "}
-              {generalInfo.github}
+              {generalInfo.email || "email"} .{" "}
+              {generalInfo.linkedIn || "linkedin"} .{" "}
+              {generalInfo.github || "github"}
             </span>
             <hr></hr>
           </SubSection>
@@ -75,20 +72,6 @@ class Cv extends Component {
               );
             })}
           </SubSection>
-
-          {/* <SubSection>
-            <h2 className="section-title left-aligned">Education</h2>
-            <h4 className="gray left-aligned">
-              {educationInfo.from} - {educationInfo.to}
-            </h4>
-            <h4 className="left-aligned">
-              <span className="green">
-                {educationInfo.degree.toUpperCase()},{" "}
-                {educationInfo.institution.toUpperCase()}
-              </span>
-            </h4>
-            <span className="gray left-aligned">{educationInfo.cgpa}</span>
-          </SubSection> */}
         </InfoSection>
         <button onClick={backToEdit}>Back</button>
       </div>

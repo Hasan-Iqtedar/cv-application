@@ -24,7 +24,6 @@ body {
   flex-direction: column;
   align-items: center;
   margin-bottom: 15px;
-  border: 1px solid red;
   width: 80%;
 }
 
@@ -37,17 +36,14 @@ body {
 .container {
   display: flex;
   flex-direction: column;
-  /* align-items: flex-start; */
   width: 100%;
   padding: 0px;
-  /* border: 1px solid blue; */
   margin-bottom: 15px;
 }
 
 .date-container {
   display: flex;
   flex-direction: row;
-  /* border: 1px solid blue; */
   justify-content: space-between;
 }
 
@@ -66,7 +62,6 @@ body {
 #name span {
   color: black;
 }
-
 
 .general-info-input {
   height: 30px;
@@ -98,15 +93,18 @@ button {
   margin-left: auto;
 }
 
-.sub-section h1, h2, h3, h4 {
+.sub-section h1,
+h2,
+h3,
+h4 {
   margin: 0;
 }
 
-.button-container{
+.button-container {
   display: flex;
   justify-content: space-between;
-  width: 15%;
-  margin-left: auto;
+  width: 140px;
+  align-self: flex-end;
 }
 
 .centered {
@@ -125,7 +123,7 @@ button {
   color: rgb(58, 117, 43);
 }
 
-.left-aligned { 
+.left-aligned {
   align-self: flex-start;
 }
 

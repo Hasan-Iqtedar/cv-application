@@ -127,11 +127,6 @@ class App extends Component {
             sendGeneralInfo={this.getGeneralInfo}
           />
 
-          {/* <EducationInfo
-            educationInfo={this.state.educationInfo}
-            sendEducationInfo={this.getEducationInfo}
-          /> */}
-
           <InfoSection title="Education">
             {this.state._educationInfo.map((value) => {
               return (
