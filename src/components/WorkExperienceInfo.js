@@ -34,11 +34,11 @@ class WorkExperienceInfo extends Component {
     ) {
       this.props.sendExperienceInfo({
         id: this.props.id,
-        jobTitle: this.state.jobTitle,
-        company: this.state.company,
-        details: this.state.details,
-        to: this.state.to,
-        from: this.state.from,
+        jobTitle: jobTitle,
+        company: company,
+        details: details,
+        to: to,
+        from: from,
       });
     }
   };
@@ -85,7 +85,8 @@ class WorkExperienceInfo extends Component {
             <input
               className="general-info-input"
               id="to"
-              type="date"
+              type="text"
+              placeholder="Date or Present"
               value={this.state.to}
               onChange={this.updateToDate}
             ></input>
@@ -96,8 +97,7 @@ class WorkExperienceInfo extends Component {
             <input
               className="general-info-input"
               id="from"
-              type="text"
-              placeholder="Date or Present"
+              type="date"
               value={this.state.from}
               onChange={this.updateFromDate}
             ></input>
@@ -108,7 +108,6 @@ class WorkExperienceInfo extends Component {
           <button onClick={this.updateExperience}>Update</button>
           <button
             onClick={() => {
-              // this.setState({ jobTitle: "" });
               this.props.deleteExperience(this.props.id);
             }}
           >

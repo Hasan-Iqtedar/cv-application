@@ -30,8 +30,10 @@ class App extends Component {
         from: "",
       },
 
+      _educationInfo: [],
       experienceInfo: [],
       currentExperienceId: 0,
+      currentEducationId: 0,
     };
   }
 
@@ -47,28 +49,52 @@ class App extends Component {
     });
   };
 
-  updateExperience = (data) => {
-    const updatedInfo = this.state.experienceInfo;
+  updateEducation = (data) => {
+    const updatedInfo = [...this.state._educationInfo];
     const index = updatedInfo.findIndex((element) => element.id === data.id);
     updatedInfo[index] = data;
 
+    this.setState({ _educationInfo: updatedInfo });
+  };
+
+  deleteEducation = (id) => {
+    let updatedInfo = [...this.state._educationInfo];
+    updatedInfo = updatedInfo.filter((element) => element.id !== id);
+
+    this.setState({ _educationInfo: updatedInfo });
+  };
+
+  addEducation = () => {
     this.setState({
-      experienceInfo: updatedInfo,
+      _educationInfo: [
+        ...this.state._educationInfo,
+        {
+          id: this.state.currentEducationId,
+          degree: "",
+          institution: "",
+          cgpa: "",
+          to: "",
+          from: "",
+        },
+      ],
+      currentEducationId: this.state.currentEducationId + 1,
     });
+  };
+
+  updateExperience = (data) => {
+    const updatedInfo = [...this.state.experienceInfo];
+    const index = updatedInfo.findIndex((element) => element.id === data.id);
+    updatedInfo[index] = data;
+
+    this.setState({ experienceInfo: updatedInfo });
   };
 
   deleteExperience = (id) => {
     let updatedInfo = [...this.state.experienceInfo];
     updatedInfo = updatedInfo.filter((element) => element.id !== id);
 
-    this.setState({
-      experienceInfo: updatedInfo,
-    });
+    this.setState({ experienceInfo: updatedInfo });
   };
-
-  generateCV = () => this.setState({ complete: true });
-
-  backToEdit = () => this.setState({ complete: false });
 
   addExperience = () => {
     this.setState({
@@ -87,6 +113,10 @@ class App extends Component {
     });
   };
 
+  generateCV = () => this.setState({ complete: true });
+
+  backToEdit = () => this.setState({ complete: false });
+
   render() {
     console.log("App Component\n____________________");
     if (!this.state.complete) {
@@ -97,10 +127,27 @@ class App extends Component {
             sendGeneralInfo={this.getGeneralInfo}
           />
 
-          <EducationInfo
+          {/* <EducationInfo
             educationInfo={this.state.educationInfo}
             sendEducationInfo={this.getEducationInfo}
-          />
+          /> */}
+
+          <InfoSection title="Education">
+            {this.state._educationInfo.map((value) => {
+              return (
+                <EducationInfo
+                  id={value.id}
+                  key={value.id}
+                  educationInfo={value}
+                  sendEducationInfo={this.updateEducation}
+                  deleteEducation={this.deleteEducation}
+                ></EducationInfo>
+              );
+            })}
+            <button className="add-button" onClick={this.addEducation}>
+              Add
+            </button>
+          </InfoSection>
 
           <InfoSection title="Experience">
             {this.state.experienceInfo.map((value) => {
@@ -129,7 +176,7 @@ class App extends Component {
         <Cv
           generalInfo={this.state.generalInfo}
           experienceInfo={this.state.experienceInfo}
-          educationInfo={this.state.educationInfo}
+          educationInfo={this.state._educationInfo}
           backToEdit={this.backToEdit}
         ></Cv>
       );

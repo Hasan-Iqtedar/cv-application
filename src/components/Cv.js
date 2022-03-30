@@ -53,10 +53,30 @@ class Cv extends Component {
                 </Container>
               );
             })}
-
           </SubSection>
 
           <SubSection>
+            <h2 className="section-title left-aligned">Education</h2>
+
+            {educationInfo.map((education, index) => {
+              return (
+                <Container className="container" key={index}>
+                  <h4 className="gray left-aligned">
+                    {education.from} - {education.to}
+                  </h4>
+                  <h4 className="left-aligned">
+                    <span className="green">
+                      {education.degree.toUpperCase()},{" "}
+                      {education.institution.toUpperCase()}
+                    </span>
+                  </h4>
+                  <span className="gray left-aligned">{education.cgpa}</span>
+                </Container>
+              );
+            })}
+          </SubSection>
+
+          {/* <SubSection>
             <h2 className="section-title left-aligned">Education</h2>
             <h4 className="gray left-aligned">
               {educationInfo.from} - {educationInfo.to}
@@ -68,7 +88,7 @@ class Cv extends Component {
               </span>
             </h4>
             <span className="gray left-aligned">{educationInfo.cgpa}</span>
-          </SubSection>
+          </SubSection> */}
         </InfoSection>
         <button onClick={backToEdit}>Back</button>
       </div>
