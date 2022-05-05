@@ -1,181 +1,155 @@
-import { Component } from "react";
+import { useState } from "react";
 import Cv from "./components/Cv";
 import EducationInfo from "./components/EducationInfo";
 import GeneralInfo from "./components/GeneralInfo";
 import InfoSection from "./components/InfoSection";
 import WorkExperienceInfo from "./components/WorkExperienceInfo";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+const App = (props) => {
+  const [complete, setComplete] = useState(false);
 
-    this.state = {
-      complete: false,
+  const [generalInfo, setGeneralInfo] = useState({
+    firstName: "",
+    lastName: "",
+    title: "",
+    phoneNo: "",
+    email: "",
+    github: "",
+    linkedIn: "",
+  });
 
-      generalInfo: {
-        firstName: "",
-        lastName: "",
-        title: "",
-        phoneNo: "",
-        email: "",
-        github: "",
-        linkedIn: "",
-      },
+  const [educationInfo, setEducationInfo] = useState([]);
+  const [experienceInfo, setExperenceInfo] = useState([]);
 
-      educationInfo: {
+  const [currentEducationId, setCurrentEducationId] = useState(0);
+  const [currentExperienceId, setCurrentExperienceId] = useState(0);
+
+  const getGeneralInfo = (data) => {
+    setGeneralInfo(data);
+  };
+
+  const updateEducation = (data) => {
+    const updatedInfo = [...educationInfo];
+    const index = updatedInfo.findIndex((element) => element.id === data.id);
+    updatedInfo[index] = data;
+
+    setEducationInfo(updatedInfo);
+  };
+
+  const deleteEducation = (id) => {
+    let updatedInfo = [...educationInfo];
+    updatedInfo = updatedInfo.filter((element) => element.id !== id);
+
+    setEducationInfo(updatedInfo);
+  };
+
+  const addEducation = () => {
+    setEducationInfo([
+      ...educationInfo,
+      {
+        id: currentEducationId,
         degree: "",
         institution: "",
         cgpa: "",
         to: "",
         from: "",
       },
+    ]);
 
-      _educationInfo: [],
-      experienceInfo: [],
-      currentExperienceId: 0,
-      currentEducationId: 0,
-    };
-  }
-
-  getGeneralInfo = (data) => {
-    this.setState({
-      generalInfo: data,
-    });
+    setCurrentEducationId(currentEducationId + 1);
   };
 
-  getEducationInfo = (data) => {
-    this.setState({
-      educationInfo: data,
-    });
-  };
-
-  updateEducation = (data) => {
-    const updatedInfo = [...this.state._educationInfo];
+  const updateExperience = (data) => {
+    const updatedInfo = [...experienceInfo];
     const index = updatedInfo.findIndex((element) => element.id === data.id);
     updatedInfo[index] = data;
 
-    this.setState({ _educationInfo: updatedInfo });
+    setExperenceInfo(updatedInfo);
   };
 
-  deleteEducation = (id) => {
-    let updatedInfo = [...this.state._educationInfo];
+  const deleteExperience = (id) => {
+    let updatedInfo = [...experienceInfo];
     updatedInfo = updatedInfo.filter((element) => element.id !== id);
 
-    this.setState({ _educationInfo: updatedInfo });
+    setExperenceInfo(updatedInfo);
   };
 
-  addEducation = () => {
-    this.setState({
-      _educationInfo: [
-        ...this.state._educationInfo,
-        {
-          id: this.state.currentEducationId,
-          degree: "",
-          institution: "",
-          cgpa: "",
-          to: "",
-          from: "",
-        },
-      ],
-      currentEducationId: this.state.currentEducationId + 1,
-    });
+  const addExperience = () => {
+    setExperenceInfo([
+      ...experienceInfo,
+      {
+        id: this.state.currentExperienceId,
+        jobTitle: "",
+        company: "",
+        details: "",
+        to: "",
+        from: "",
+      },
+    ]);
+
+    setCurrentExperienceId(currentExperienceId + 1);
   };
 
-  updateExperience = (data) => {
-    const updatedInfo = [...this.state.experienceInfo];
-    const index = updatedInfo.findIndex((element) => element.id === data.id);
-    updatedInfo[index] = data;
+  const generateCV = () => setComplete(true);
+  const backToEdit = () => setComplete(false);
 
-    this.setState({ experienceInfo: updatedInfo });
-  };
+  if (!complete) {
+    return (
+      <div id="app-container">
+        <GeneralInfo
+          generalInfo={generalInfo}
+          sendGeneralInfo={getGeneralInfo}
+        />
 
-  deleteExperience = (id) => {
-    let updatedInfo = [...this.state.experienceInfo];
-    updatedInfo = updatedInfo.filter((element) => element.id !== id);
-
-    this.setState({ experienceInfo: updatedInfo });
-  };
-
-  addExperience = () => {
-    this.setState({
-      experienceInfo: [
-        ...this.state.experienceInfo,
-        {
-          id: this.state.currentExperienceId,
-          jobTitle: "",
-          company: "",
-          details: "",
-          to: "",
-          from: "",
-        },
-      ],
-      currentExperienceId: this.state.currentExperienceId + 1,
-    });
-  };
-
-  generateCV = () => this.setState({ complete: true });
-
-  backToEdit = () => this.setState({ complete: false });
-
-  render() {
-    if (!this.state.complete) {
-      return (
-        <div id="app-container">
-          <GeneralInfo
-            generalInfo={this.state.generalInfo}
-            sendGeneralInfo={this.getGeneralInfo}
-          />
-
-          <InfoSection title="Education">
-            {this.state._educationInfo.map((value) => {
-              return (
-                <EducationInfo
-                  id={value.id}
-                  key={value.id}
-                  educationInfo={value}
-                  sendEducationInfo={this.updateEducation}
-                  deleteEducation={this.deleteEducation}
-                ></EducationInfo>
-              );
-            })}
-            <button className="add-button" onClick={this.addEducation}>
-              Add
-            </button>
-          </InfoSection>
-
-          <InfoSection title="Experience">
-            {this.state.experienceInfo.map((value) => {
-              return (
-                <WorkExperienceInfo
-                  id={value.id}
-                  key={value.id}
-                  experienceInfo={value}
-                  sendExperienceInfo={this.updateExperience}
-                  deleteExperience={this.deleteExperience}
-                />
-              );
-            })}
-            <button className="add-button" onClick={this.addExperience}>
-              Add
-            </button>
-          </InfoSection>
-
-          <button className="complete-button" onClick={this.generateCV}>
-            Complete
+        <InfoSection title="Education">
+          {educationInfo.map((value) => {
+            return (
+              <EducationInfo
+                id={value.id}
+                key={value.id}
+                educationInfo={value}
+                sendEducationInfo={updateEducation}
+                deleteEducation={deleteEducation}
+              ></EducationInfo>
+            );
+          })}
+          <button className="add-button" onClick={addEducation}>
+            Add
           </button>
-        </div>
-      );
-    } else {
-      return (
-        <Cv
-          generalInfo={this.state.generalInfo}
-          experienceInfo={this.state.experienceInfo}
-          educationInfo={this.state._educationInfo}
-          backToEdit={this.backToEdit}
-        ></Cv>
-      );
-    }
+        </InfoSection>
+
+        <InfoSection title="Experience">
+          {experienceInfo.map((value) => {
+            return (
+              <WorkExperienceInfo
+                id={value.id}
+                key={value.id}
+                experienceInfo={value}
+                sendExperienceInfo={updateExperience}
+                deleteExperience={deleteExperience}
+              />
+            );
+          })}
+          <button className="add-button" onClick={addExperience}>
+            Add
+          </button>
+        </InfoSection>
+
+        <button className="complete-button" onClick={generateCV}>
+          Complete
+        </button>
+      </div>
+    );
+  } else {
+    return (
+      <Cv
+        generalInfo={generalInfo}
+        experienceInfo={experienceInfo}
+        educationInfo={educationInfo}
+        backToEdit={backToEdit}
+      ></Cv>
+    );
   }
-}
+};
 
 export default App;
