@@ -4,8 +4,8 @@ import "./../styles/main.css";
 const InfoSection = (props) => {
   return (
     <div className="info-section">
-      <h1> {this.props.title} </h1>
-      {this.props.children}
+      <h1> {props.title} </h1>
+      {props.children}
     </div>
   );
 };
