@@ -1,122 +1,111 @@
-import { Component } from "react";
+import React, { useState } from "react";
 import SubSection from "./SubSection";
 import Container from "./Container";
 
-class WorkExperienceInfo extends Component {
-  constructor(props) {
-    super(props);
+const WorkExperienceInfo = (props) => {
+  const [jobTitle, setJobTitle] = useState(props.experienceInfo.jobTitle);
+  const [company, setCompany] = useState(props.experienceInfo.company);
+  const [details, setDetails] = useState(props.experienceInfo.details);
+  const [toDate, setToDate] = useState(props.experienceInfo.to);
+  const [fromDate, setFromDate] = useState(props.experienceInfo.from);
 
-    this.state = {
-      id: props.experienceInfo.id,
-      jobTitle: props.experienceInfo.jobTitle || "",
-      company: props.experienceInfo.company || "",
-      details: props.experienceInfo.details || "",
-      to: props.experienceInfo.to || "",
-      from: props.experienceInfo.from || "",
-    };
-  }
+  const updateJobTitle = (e) => setJobTitle(e.target.value);
+  const updateCompany = (e) => setCompany(e.target.value);
+  const updateDetails = (e) => setDetails(e.target.value);
+  const updateToDate = (e) => setToDate(e.target.value);
+  const updateFromDate = (e) => setFromDate(e.target.value);
 
-  updateJobTitle = (e) => this.setState({ jobTitle: e.target.value });
-  updateCompany = (e) => this.setState({ company: e.target.value });
-  updateDetails = (e) => this.setState({ details: e.target.value });
-  updateToDate = (e) => this.setState({ to: e.target.value });
-  updateFromDate = (e) => this.setState({ from: e.target.value });
-
-  updateExperience = () => {
-    const { jobTitle, company, details, to, from } = this.state;
-
+  const updateExperience = () => {
     if (
       jobTitle !== "" &&
       company !== "" &&
       details !== "" &&
-      to !== "" &&
-      from !== ""
+      toDate !== "" &&
+      fromDate !== ""
     ) {
-      this.props.sendExperienceInfo({
-        id: this.props.id,
+      props.sendExperienceInfo({
+        id: props.id,
         jobTitle: jobTitle,
         company: company,
         details: details,
-        to: to,
-        from: from,
+        to: toDate,
+        from: fromDate,
       });
     }
   };
 
-  render() {
-    return (
-      <SubSection>
+  return (
+    <SubSection>
+      <Container className="container">
+        <label htmlFor="jobTitle">Job Title</label>
+        <input
+          id="jobTitle"
+          className="general-info-input"
+          type="text"
+          value={jobTitle}
+          onChange={updateJobTitle}
+        ></input>
+      </Container>
+
+      <Container className="container">
+        <label htmlFor="company">Company</label>
+        <input
+          id="company"
+          className="general-info-input"
+          type="text"
+          value={company}
+          onChange={updateCompany}
+        ></input>
+      </Container>
+
+      <Container className="container">
+        <label htmlFor="details">Details</label>
+        <input
+          id="details"
+          className="general-info-input"
+          type="text"
+          value={details}
+          onChange={updateDetails}
+        ></input>
+      </Container>
+
+      <Container className="container date-container">
         <Container className="container">
-          <label htmlFor="jobTitle">Job Title</label>
+          <label htmlFor="to">To</label>
           <input
-            id="jobTitle"
             className="general-info-input"
+            id="to"
             type="text"
-            value={this.state.jobTitle}
-            onChange={this.updateJobTitle}
+            placeholder="Date or Present"
+            value={toDate}
+            onChange={updateToDate}
           ></input>
         </Container>
 
         <Container className="container">
-          <label htmlFor="company">Company</label>
+          <label htmlFor="from">From</label>
           <input
-            id="company"
             className="general-info-input"
-            type="text"
-            value={this.state.company}
-            onChange={this.updateCompany}
+            id="from"
+            type="date"
+            value={fromDate}
+            onChange={updateFromDate}
           ></input>
         </Container>
+      </Container>
 
-        <Container className="container">
-          <label htmlFor="details">Details</label>
-          <input
-            id="details"
-            className="general-info-input"
-            type="text"
-            value={this.state.details}
-            onChange={this.updateDetails}
-          ></input>
-        </Container>
-
-        <Container className="container date-container">
-          <Container className="container">
-            <label htmlFor="to">To</label>
-            <input
-              className="general-info-input"
-              id="to"
-              type="text"
-              placeholder="Date or Present"
-              value={this.state.to}
-              onChange={this.updateToDate}
-            ></input>
-          </Container>
-
-          <Container className="container">
-            <label htmlFor="from">From</label>
-            <input
-              className="general-info-input"
-              id="from"
-              type="date"
-              value={this.state.from}
-              onChange={this.updateFromDate}
-            ></input>
-          </Container>
-        </Container>
-
-        <div className="button-container">
-          <button onClick={this.updateExperience}>Update</button>
-          <button
-            onClick={() => {
-              this.props.deleteExperience(this.props.id);
-            }}
-          >
-            Delete
-          </button>
-        </div>
-      </SubSection>
-    );
-  }
-}
+      <div className="button-container">
+        <button onClick={updateExperience}>Update</button>
+        <button
+          onClick={() => {
+            props.deleteExperience(props.id);
+          }}
+        >
+          Delete
+        </button>
+      </div>
+    </SubSection>
+  );
+};
 
 export default WorkExperienceInfo;
