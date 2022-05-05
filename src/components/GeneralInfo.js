@@ -108,7 +108,7 @@ const GeneralInfo = (props) => {
             linkedIn,
           })}
         >
-          Add
+          submit
         </button>
       </SubSection>
     </InfoSection>
