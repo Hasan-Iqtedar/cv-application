@@ -78,7 +78,7 @@ const App = (props) => {
     setExperenceInfo([
       ...experienceInfo,
       {
-        id: this.state.currentExperienceId,
+        id: currentExperienceId,
         jobTitle: "",
         company: "",
         details: "",
